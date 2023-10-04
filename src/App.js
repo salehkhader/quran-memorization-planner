@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ProgressInput from "./ProgressInput";
+import DailyInput from "./DailyInput";
+import DateInput from "./DateInput";
+import InfoBox from "./InfoBox";
 
 function App() {
+  const [dailyAmount, setDailyAmount] = useState(0);
+  const [targetDate, setTargetDate] = useState(new Date());
+  const [pagesMemorized, setPagesMemorized] = useState(0);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Quran Memorization Planner</h1>
+      <ProgressInput
+        pagesMemorized={pagesMemorized}
+        setPagesMemorized={setPagesMemorized}
+      />
+      {/* Display the user's current progress */}
+      <InfoBox pagesMemorized={pagesMemorized} />
+      <DailyInput
+        dailyAmount={dailyAmount}
+        setDailyAmount={setDailyAmount}
+        pagesMemorized={pagesMemorized}
+      />
+      <DateInput
+        targetDate={targetDate}
+        setTargetDate={setTargetDate}
+        dailyAmount={dailyAmount}
+        pagesMemorized={pagesMemorized}
+      />
     </div>
   );
 }
